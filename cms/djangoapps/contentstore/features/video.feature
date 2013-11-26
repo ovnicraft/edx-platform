@@ -75,6 +75,7 @@ Feature: CMS.Video Component
     Then Captions are "invisible"
 
   # 10
+<<<<<<< HEAD
   # Disabled 11/26 due to flakiness in master.
   # Enabled back on 11/29.
   Scenario: When enter key is pressed on a caption shows an outline around it
@@ -83,6 +84,15 @@ Feature: CMS.Video Component
     Then I focus on caption line with data-index "0"
     Then I press "enter" button on caption line with data-index "0"
     And I see caption line with data-index "0" has class "focused"
+=======
+  # Disabled 11/26 due to flakiness in master
+  #Scenario: When enter key is pressed on a caption shows an outline around it
+  #  Given I have created a Video component with subtitles
+  #  And Make sure captions are opened
+  #  Then I focus on caption line with data-index "0"
+  #  Then I press "enter" button on caption line with data-index "0"
+  #  And I see caption line with data-index "0" has class "focused"
+>>>>>>> Disabled video caption tests that failed in master
 
   # 11
   Scenario: When start end end times are specified, a range on slider is shown
