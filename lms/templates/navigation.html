@@ -89,6 +89,9 @@ site_status_msg = get_site_status_msg(course_id)
         <button class="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr">${_("More options dropdown")}</span><span class="fa fa-sort-desc" aria-hidden="true"></span></button>
         <ul class="dropdown-menu" aria-label="More Options" role="menu">
           <%block name="navigation_dropdown_menu_links" >
+	    % if settings.FEATURES.get('INTERNAL_MESSAGES'):
+	    <li><a href="${reverse('postman:inbox')}">${_("Messages")}</a></li>
+	    % endif
             <li><a href="${reverse('dashboard')}">${_("Dashboard")}</a></li>
             <li><a href="${reverse('learner_profile', kwargs={'username': user.username})}">${_("Profile")}</a></li>
             <li><a href="${reverse('account_settings')}">${_("Account")}</a></li>
