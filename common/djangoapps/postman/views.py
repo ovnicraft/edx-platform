@@ -31,6 +31,8 @@ from django.utils.translation import ugettext as _, ugettext_lazy
 from django.views.decorators.csrf import csrf_protect
 from django.views.generic import FormView, TemplateView, View
 
+from edxmako.shortcuts import render_to_response
+
 from . import OPTION_MESSAGES
 from .fields import autocompleter_app
 from .forms import WriteForm, AnonymousWriteForm, QuickReplyForm, FullReplyForm
@@ -114,6 +116,9 @@ class InboxView(FolderMixin, TemplateView):
     view_name = 'inbox'
     # for TemplateView:
     template_name = 'postman/inbox.html'
+
+    def get(self, request, *args, **kwargs):
+        return render_to_response(self.template_name)
 
 
 class SentView(FolderMixin, TemplateView):
@@ -264,6 +269,9 @@ class WriteView(ComposeMixin, FormView):
             channel = self.autocomplete_channels
         kwargs['channel'] = channel
         return kwargs
+
+    def get(self, request, *args, **kwargs):
+        return render_to_response(self.template_name, *args, **kwargs)
 
 
 class ReplyView(ComposeMixin, FormView):

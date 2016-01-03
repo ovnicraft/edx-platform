@@ -1,14 +1,24 @@
-{% load i18n static %}{% load postman_tags %}
-{% block title %}{% trans "Messaging" %}{% endblock %}
-{% block extrahead %}{{ block.super }}
-<link type="text/css" media="all" rel="stylesheet" href="{% static 'postman/css/postman.css' %}" />{% endblock %}
-{% block postman_menu %}
-<ul id="postman_menu">{% postman_unread as unread_count %}
- <li><a href="{% url 'postman:inbox' %}">&raquo;&nbsp;{% trans "Inbox" %}{% if unread_count %} <strong>({{ unread_count }})</strong>{% endif %}</a></li>
- <li><a href="{% url 'postman:sent' %}">&raquo;&nbsp;{% trans "Sent Messages" %}</a></li>
- <li><a href="{% url 'postman:write' %}">&raquo;&nbsp;{% trans "Write" %}</a></li>
- <li><a href="{% url 'postman:archives' %}">&raquo;&nbsp;{% trans "Archives" %}</a></li>
- <li><a href="{% url 'postman:trash' %}">&raquo;&nbsp;{% trans "Trash" %}</a></li>
+<%inherit file="../main.html" />
+<%namespace name='static' file='../static_content.html'/>
+<%!
+   from django.utils.translation import ugettext as _
+   from django.core.urlresolvers import reverse
+%>   
+<%
+    tpl = """{% load postman_tags %}"""
+    from django.template import Template, Context
+    t = Template(tpl)
+    t.render(Context())
+%>
+
+<%block name="pagetitle">${_("Messaging")}</%block>
+<%block name="postman_menu">
+<ul id="postman_menu">
+ <li><a href="${ reverse('postman:inbox')}">&raquo;&nbsp;${ _("Inbox") }</li>
+ <li><a href="${ reverse('postman:sent')}">&raquo;&nbsp;${ _("Sent Messages") }</a></li>
+ <li><a href="${ reverse('postman:write')}">&raquo;&nbsp;${ _("Write") }</a></li>
+ <li><a href="${ reverse('postman:archives')}">&raquo;&nbsp;${ _("Archives") }</a></li>
+ <li><a href="${ reverse('postman:trash')}">&raquo;&nbsp;${ _("Trash") }</a></li>
 </ul>
-{% endblock %}
-{% block content %}{% endblock %}
+</%block>
+<%block name="content"></%block>

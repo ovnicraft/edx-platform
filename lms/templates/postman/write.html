@@ -1,3 +1,8 @@
-{% extends "postman/base_write.html" %}
-{% load i18n %}
-{% block pm_write_title %}{% trans "Write"%}{% endblock %}
+<%inherit file="base_write.html" />
+
+<%!
+   from django.utils.translation import ugettext as _
+   from django.utils.http import urlencode
+%>
+
+<%block name="pm_write_title">${ _("Write") }</%block>
